@@ -1,0 +1,37 @@
+---
+title: "Data Products Assignment 1: October 8th, 2018"
+author: "Emily Payne"
+output: html_document
+---
+
+## Map of Vegan Restaurants in San Diego
+Using leaflet, I created a map of my top three favorite restaurants in San Diego, CA. The labels of each restuarant include a hyperlink to the Yelp page as well as the address of each restaurant.
+
+```{r, echo=FALSE}
+library(leaflet)
+restaurantLatLong <- data.frame(
+  lat = c(32.7621, 32.8336, 32.7548),
+  lng = c(-117.1461, -117.1740, -117.1447)
+)
+
+restaurant1 <- paste(sep = "<br/>",
+                  "<b><a href='https://www.yelp.com/biz/plumeria-vegetarian-san-diego'>Plumeria Vegetarian Restaurant</a></b>",
+                  "4661 Park Blvd",
+                  "San Diego, CA 92116")
+restaurant2 <- paste(sep = "<br/>",
+                  "<b><a href='https://www.yelp.com/biz/sipz-san-diego'>Sipz</a></b>",
+                  "3914 30th St",
+                  "San Diego, CA 92104")
+restaurant3 <- paste(sep = "<br/>",
+                  "<b><a href='https://www.yelp.com/biz/loving-hut-san-diego'>Loving Hut</a></b>",
+                  "1905 El Cajon Blvd",
+                  "San Diego, CA 92104")
+
+restaurantInfo <- c(restaurant1, restaurant2, restaurant3)
+
+restaurantLatLong %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup = restaurantInfo)
+```
+
